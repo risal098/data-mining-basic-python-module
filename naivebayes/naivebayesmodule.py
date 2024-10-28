@@ -17,7 +17,17 @@ def pAtotal(item,column):
 #untuk menghitung probabilitas item A terhadap B
 def pAB(itemA,itemB):
 	return itemA/itemB
-	
+
+#untuk menghitung total B pada A
+def findTotalAB(A,listA,B,listB):
+	indeks=0
+	result=0
+	for a in listA:
+		if a==A and listB[indeks]==B:
+			result+=1
+		indeks+=1
+	return result
+			
 #siapkan dict untuk menyimpan probabilitas tiap kolom dependent
 """
 dictProb=
@@ -40,7 +50,7 @@ def dictProbXGen(uniqueSetX,uniqueSetY,Xlist,Ylist):
 	for i in uniqueSetX:
 		dictProb[i]={}
 		for ii in uniqueSetY:
-			dictProb[i][ii]=pAB(Xlist.count(i),Ylist.count(ii))
+			dictProb[i][ii]=pAB(findTotalAB(i,Xlist,ii,Ylist),Ylist.count(ii))
 	return dictProb
 	
 	
